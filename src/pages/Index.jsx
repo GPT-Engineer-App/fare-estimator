@@ -40,7 +40,8 @@ const Index = () => {
       yardsPerUnit = 160;
     }
 
-    const distanceFare = Math.ceil(distance / yardsPerUnit) * yardsFare;
+    const distanceInYards = distance * 1760;
+    const distanceFare = Math.ceil(distanceInYards / yardsPerUnit) * yardsFare;
     const additionalPassengersFare = additionalPassengers * 0.3;
     const childrenFare = Math.floor(children / 2) * 0.3;
     const luggageFare = luggage * 0.3;
@@ -73,19 +74,35 @@ const Index = () => {
               <Tbody>
                 <Tr>
                   <Td>Tariff 1</Td>
-                  <Td>Monday to Friday 6.00am to 8.00pm</Td>
+                  <Td>
+                    Monday to Friday 6.00am to 8.00pm
+                    <br />
+                    £2.60 start for first 0.09 miles and every subsequent 0.09 miles 20p
+                  </Td>
                 </Tr>
                 <Tr>
                   <Td>Tariff 2</Td>
-                  <Td>Monday to Friday 9.00pm to 12.00am, Saturdays, Sundays and bank holidays</Td>
+                  <Td>
+                    Monday to Friday 9.00pm to 12.00am, Saturdays, Sundays and bank holidays
+                    <br />
+                    £2.60 start for first 0.07 miles and every subsequent 0.07 miles 20p
+                  </Td>
                 </Tr>
                 <Tr>
                   <Td>Tariff 3</Td>
-                  <Td>Daily from 12.00am to 6.00am</Td>
+                  <Td>
+                    Daily from 12.00am to 6.00am
+                    <br />
+                    £3.60 start for first 0.07 miles and every subsequent 0.07 miles 20p
+                  </Td>
                 </Tr>
                 <Tr>
                   <Td>Tariff 4</Td>
-                  <Td>Christmas and New Year</Td>
+                  <Td>
+                    Christmas and New Year
+                    <br />
+                    £5.60 Start for first 0.07 miles and every subsequent 0.07 miles 20p
+                  </Td>
                 </Tr>
               </Tbody>
             </Table>
@@ -119,8 +136,8 @@ const Index = () => {
             <Input type="time" value={time} onChange={(e) => setTime(e.target.value)} />
           </HStack>
           <HStack>
-            <Text>Distance (yards):</Text>
-            <Input type="number" value={distance} onChange={(e) => setDistance(e.target.value)} />
+            <Text>Distance (miles):</Text>
+            <Input type="number" step="0.1" value={distance} onChange={(e) => setDistance(e.target.value)} />
           </HStack>
           <HStack>
             <Text>Additional Passengers:</Text>
