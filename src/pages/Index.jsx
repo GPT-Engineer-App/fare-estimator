@@ -77,7 +77,7 @@ const Index = () => {
                   <Td>
                     Monday to Friday 6.00am to 8.00pm
                     <br />
-                    £2.60 start for first 0.09 miles and every subsequent 0.09 miles 20p
+                    £2.60 start for first 160 yards and every subsequent 160 yards 20p
                   </Td>
                 </Tr>
                 <Tr>
@@ -85,7 +85,7 @@ const Index = () => {
                   <Td>
                     Monday to Friday 9.00pm to 12.00am, Saturdays, Sundays and bank holidays
                     <br />
-                    £2.60 start for first 0.07 miles and every subsequent 0.07 miles 20p
+                    £2.60 start for first 116 yards and every subsequent 116 yards 20p
                   </Td>
                 </Tr>
                 <Tr>
@@ -93,7 +93,7 @@ const Index = () => {
                   <Td>
                     Daily from 12.00am to 6.00am
                     <br />
-                    £3.60 start for first 0.07 miles and every subsequent 0.07 miles 20p
+                    £3.60 start for first 116 yards and every subsequent 116 yards 20p
                   </Td>
                 </Tr>
                 <Tr>
@@ -101,7 +101,7 @@ const Index = () => {
                   <Td>
                     Christmas and New Year
                     <br />
-                    £5.60 Start for first 0.07 miles and every subsequent 0.07 miles 20p
+                    £5.60 Start for first 116 yards and every subsequent 116 yards 20p
                   </Td>
                 </Tr>
               </Tbody>
@@ -136,8 +136,8 @@ const Index = () => {
             <Input type="time" value={time} onChange={(e) => setTime(e.target.value)} />
           </HStack>
           <HStack>
-            <Text>Distance (miles):</Text>
-            <Input type="number" step="0.1" value={distance} onChange={(e) => setDistance(e.target.value)} />
+            <Text>Distance (yards):</Text>
+            <Input type="number" value={distance} onChange={(e) => setDistance(e.target.value)} />
           </HStack>
           <HStack>
             <Text>Additional Passengers:</Text>
