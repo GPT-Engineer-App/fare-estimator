@@ -42,7 +42,7 @@ const Index = () => {
 
     const distanceInYards = distance * 1760;
     const distanceFare = Math.ceil(distanceInYards / yardsPerUnit) * yardsFare;
-    const additionalPassengersFare = additionalPassengers * 0.3;
+    const additionalPassengersFare = Math.max(0, additionalPassengers - 1) * 0.3;
     const childrenFare = Math.floor(children / 2) * 0.3;
     const luggageFare = luggage * 0.3;
     const cyclesFare = cycles * 0.9;
@@ -68,70 +68,70 @@ const Index = () => {
               <Heading as="h2" size="lg" mb={4}>
                 Tariffs
               </Heading>
-        <VStack spacing={4} alignItems="flex-start">
-          <Heading as="h2" size="xl">
-            Tariffs
-          </Heading>
-          <TableContainer>
-            <Table variant="simple">
-              <Thead>
-                <Tr>
-                  <Th>Tariff</Th>
-                  <Th>Description</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                <Tr>
-                  <Td>Tariff 1</Td>
-                  <Td>
-                    Monday to Friday 6.00am to 8.00pm
-                    <br />
-                    £2.60 start for first 160 yards and every subsequent 160 yards 20p
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Td>Tariff 2</Td>
-                  <Td>
-                    Monday to Friday 9.00pm to 12.00am, Saturdays, Sundays and bank holidays
-                    <br />
-                    £2.60 start for first 116 yards and every subsequent 116 yards 20p
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Td>Tariff 3</Td>
-                  <Td>
-                    Daily from 12.00am to 6.00am
-                    <br />
-                    £3.60 start for first 116 yards and every subsequent 116 yards 20p
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Td>Tariff 4</Td>
-                  <Td>
-                    Christmas and New Year
-                    <br />
-                    £5.60 Start for first 116 yards and every subsequent 116 yards 20p
-                  </Td>
-                </Tr>
-              </Tbody>
-            </Table>
-          </TableContainer>
-          <Text>
-            <strong>Additional Passengers:</strong> In excess of one - 30p for each additional adult passenger.
-          </Text>
-          <Text>
-            <strong>Children:</strong> For every two passengers 3 to 12 years - 30p.
-          </Text>
-          <Text>
-            <strong>Luggage, Prams and Dogs:</strong> Each item 30p.
-          </Text>
-          <Text>
-            <strong>Cycles:</strong> 90p
-          </Text>
-          <Text>
-            <strong>Waiting Time:</strong> All Tariffs - 20p for each period of 30 seconds. The meter adds this automatically.
-          </Text>
-        </VStack>
+              <VStack spacing={4} alignItems="flex-start">
+                <Heading as="h2" size="xl">
+                  Tariffs
+                </Heading>
+                <TableContainer>
+                  <Table variant="simple">
+                    <Thead>
+                      <Tr>
+                        <Th>Tariff</Th>
+                        <Th>Description</Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      <Tr>
+                        <Td>Tariff 1</Td>
+                        <Td>
+                          Monday to Friday 6.00am to 8.00pm
+                          <br />
+                          £2.60 start for first 160 yards and every subsequent 160 yards 20p
+                        </Td>
+                      </Tr>
+                      <Tr>
+                        <Td>Tariff 2</Td>
+                        <Td>
+                          Monday to Friday 9.00pm to 12.00am, Saturdays, Sundays and bank holidays
+                          <br />
+                          £2.60 start for first 116 yards and every subsequent 116 yards 20p
+                        </Td>
+                      </Tr>
+                      <Tr>
+                        <Td>Tariff 3</Td>
+                        <Td>
+                          Daily from 12.00am to 6.00am
+                          <br />
+                          £3.60 start for first 116 yards and every subsequent 116 yards 20p
+                        </Td>
+                      </Tr>
+                      <Tr>
+                        <Td>Tariff 4</Td>
+                        <Td>
+                          Christmas and New Year
+                          <br />
+                          £5.60 Start for first 116 yards and every subsequent 116 yards 20p
+                        </Td>
+                      </Tr>
+                    </Tbody>
+                  </Table>
+                </TableContainer>
+                <Text>
+                  <strong>Additional Passengers:</strong> In excess of one - 30p for each additional adult passenger.
+                </Text>
+                <Text>
+                  <strong>Children:</strong> For every two passengers 3 to 12 years - 30p.
+                </Text>
+                <Text>
+                  <strong>Luggage, Prams and Dogs:</strong> Each item 30p.
+                </Text>
+                <Text>
+                  <strong>Cycles:</strong> 90p
+                </Text>
+                <Text>
+                  <strong>Waiting Time:</strong> All Tariffs - 20p for each period of 30 seconds. The meter adds this automatically.
+                </Text>
+              </VStack>
             </Box>
           </GridItem>
           <GridItem>
@@ -140,66 +140,68 @@ const Index = () => {
                 Fare Calculator
               </Heading>
               <VStack spacing={4} alignItems="stretch">
-          <HStack>
-            <Text>Date:</Text>
-            <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-          </HStack>
-          <HStack>
-            <Text>Time:</Text>
-            <Input type="time" value={time} onChange={(e) => setTime(e.target.value)} />
-          </HStack>
-          <HStack>
-            <Text>Distance (yards):</Text>
-            <Input type="number" value={distance} onChange={(e) => setDistance(e.target.value)} />
-          </HStack>
-          <HStack>
-            <Text>Additional Passengers:</Text>
-            <Select value={additionalPassengers} onChange={(e) => setAdditionalPassengers(parseInt(e.target.value))}>
-              {[...Array(10)].map((_, i) => (
-                <option key={i} value={i}>
-                  {i}
-                </option>
-              ))}
-            </Select>
-          </HStack>
-          <HStack>
-            <Text>Children (3-12 years):</Text>
-            <Select value={children} onChange={(e) => setChildren(parseInt(e.target.value))}>
-              {[...Array(10)].map((_, i) => (
-                <option key={i} value={i}>
-                  {i}
-                </option>
-              ))}
-            </Select>
-          </HStack>
-          <HStack>
-            <Text>Luggage, Prams, Dogs:</Text>
-            <Select value={luggage} onChange={(e) => setLuggage(parseInt(e.target.value))}>
-              {[...Array(10)].map((_, i) => (
-                <option key={i} value={i}>
-                  {i}
-                </option>
-              ))}
-            </Select>
-          </HStack>
-          <HStack>
-            <Text>Cycles:</Text>
-            <Select value={cycles} onChange={(e) => setCycles(parseInt(e.target.value))}>
-              {[...Array(10)].map((_, i) => (
-                <option key={i} value={i}>
-                  {i}
-                </option>
-              ))}
-            </Select>
-          </HStack>
-          <HStack>
-            <Text>Waiting Time (seconds):</Text>
-            <Input type="number" value={waitingTime} onChange={(e) => setWaitingTime(e.target.value)} />
-          </HStack>
-          <Button colorScheme="blue" onClick={calculateFare}>
-            Calculate Fare
-          </Button>
-          </VStack>
+                <HStack>
+                  <Text>Date:</Text>
+                  <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+                </HStack>
+                <HStack>
+                  <Text>Time:</Text>
+                  <Input type="time" value={time} onChange={(e) => setTime(e.target.value)} />
+                </HStack>
+                <HStack>
+                  <Text>Distance (yards):</Text>
+                  <Input type="number" value={distance} onChange={(e) => setDistance(e.target.value)} />
+                </HStack>
+                <HStack>
+                  <Text>Additional Passengers (first passenger free):</Text>
+                  <Select value={additionalPassengers} onChange={(e) => setAdditionalPassengers(parseInt(e.target.value))}>
+                    <option value={0}>0</option>
+                    <option value={1}>1 (free)</option>
+                    {[...Array(9)].map((_, i) => (
+                      <option key={i + 2} value={i + 2}>
+                        {i + 2}
+                      </option>
+                    ))}
+                  </Select>
+                </HStack>
+                <HStack>
+                  <Text>Children (3-12 years):</Text>
+                  <Select value={children} onChange={(e) => setChildren(parseInt(e.target.value))}>
+                    {[...Array(10)].map((_, i) => (
+                      <option key={i} value={i}>
+                        {i}
+                      </option>
+                    ))}
+                  </Select>
+                </HStack>
+                <HStack>
+                  <Text>Luggage, Prams, Dogs:</Text>
+                  <Select value={luggage} onChange={(e) => setLuggage(parseInt(e.target.value))}>
+                    {[...Array(10)].map((_, i) => (
+                      <option key={i} value={i}>
+                        {i}
+                      </option>
+                    ))}
+                  </Select>
+                </HStack>
+                <HStack>
+                  <Text>Cycles:</Text>
+                  <Select value={cycles} onChange={(e) => setCycles(parseInt(e.target.value))}>
+                    {[...Array(10)].map((_, i) => (
+                      <option key={i} value={i}>
+                        {i}
+                      </option>
+                    ))}
+                  </Select>
+                </HStack>
+                <HStack>
+                  <Text>Waiting Time (seconds):</Text>
+                  <Input type="number" value={waitingTime} onChange={(e) => setWaitingTime(e.target.value)} />
+                </HStack>
+                <Button colorScheme="blue" onClick={calculateFare}>
+                  Calculate Fare
+                </Button>
+              </VStack>
               <Text fontSize="2xl" mt={8}>
                 Estimated Fare: <strong>£{fare}</strong>
               </Text>
