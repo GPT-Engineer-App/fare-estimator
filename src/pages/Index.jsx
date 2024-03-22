@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Box, Heading, Text, VStack, HStack, Select, Input, Button, Table, Thead, Tbody, Tr, Th, Td, TableContainer } from "@chakra-ui/react";
-import { FaTaxi } from "react-icons/fa";
+import { Box, Heading, Text, VStack, HStack, Select, Input, Button, Table, Thead, Tbody, Tr, Th, Td, TableContainer, Grid, GridItem, Container, Icon } from "@chakra-ui/react";
+import { FaTaxi, FaInfoCircle } from "react-icons/fa";
 
 const Index = () => {
   const [date, setDate] = useState("");
@@ -54,11 +54,20 @@ const Index = () => {
   };
 
   return (
-    <Box p={8}>
-      <Heading as="h1" size="2xl" mb={8}>
-        <FaTaxi /> Blackpool Taxi Fare Calculator
-      </Heading>
-      <HStack spacing={8} alignItems="flex-start">
+    <Box bg="gray.100" minHeight="100vh">
+      <Box bg="white" py={4} px={8} boxShadow="md">
+        <Heading as="h1" size="xl" mb={4}>
+          <Icon as={FaTaxi} mr={2} />
+          Blackpool Taxi Fare Calculator
+        </Heading>
+      </Box>
+      <Container maxW="container.lg" py={8}>
+        <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={8}>
+          <GridItem>
+            <Box bg="white" p={6} borderRadius="md" boxShadow="md">
+              <Heading as="h2" size="lg" mb={4}>
+                Tariffs
+              </Heading>
         <VStack spacing={4} alignItems="flex-start">
           <Heading as="h2" size="xl">
             Tariffs
@@ -123,10 +132,14 @@ const Index = () => {
             <strong>Waiting Time:</strong> All Tariffs - 20p for each period of 30 seconds. The meter adds this automatically.
           </Text>
         </VStack>
-        <VStack spacing={4} alignItems="flex-start">
-          <Heading as="h2" size="xl">
-            Fare Calculator
-          </Heading>
+            </Box>
+          </GridItem>
+          <GridItem>
+            <Box bg="white" p={6} borderRadius="md" boxShadow="md">
+              <Heading as="h2" size="lg" mb={4}>
+                Fare Calculator
+              </Heading>
+              <VStack spacing={4} alignItems="stretch">
           <HStack>
             <Text>Date:</Text>
             <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
@@ -186,11 +199,14 @@ const Index = () => {
           <Button colorScheme="blue" onClick={calculateFare}>
             Calculate Fare
           </Button>
-          <Text fontSize="2xl">
-            Estimated Fare: <strong>£{fare}</strong>
-          </Text>
-        </VStack>
-      </HStack>
+          </VStack>
+              <Text fontSize="2xl" mt={8}>
+                Estimated Fare: <strong>£{fare}</strong>
+              </Text>
+            </Box>
+          </GridItem>
+        </Grid>
+      </Container>
     </Box>
   );
 };
